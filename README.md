@@ -1,6 +1,6 @@
 # Karthik Marimuthu
 
-**MLOps Engineer — ML, GenAI & LLM platforms in regulated banking** · Toronto → open to UAE relocation
+**MLOps Engineer — ML, GenAI & LLM platforms in regulated banking** · Toronto 
 
 I build and run the platform layer under production AI systems: model serving on Kubernetes/OpenShift, CI/CD/CT release pipelines, observability, and the governance controls banks require. 12+ years in financial services; currently leading the serving and release platform for a production agentic AI product at a Tier-1 bank.
 
