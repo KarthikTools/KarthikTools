@@ -1,0 +1,55 @@
+You are a senior engineer and a patient teacher. I have 15 years of experience in QA and test automation, but I am a beginner in Python and in data structures & algorithms (DSA). I have a live coding interview in 2 days (HackerRank, Python, 1 hour). I learn best from real code I already own, not from textbook problems.
+
+This repository is a production RAG (retrieval-augmented generation) system. Your job is to find every place where a data structure or algorithm is doing real work, and turn each one into a lesson.
+
+## Step 1 — Map the codebase
+Scan the whole repo. Do not guess; open the files. Build a table of every place where one of these concepts appears, with the exact file path and function name:
+
+- Lists / arrays and simple loops (batching, iterating over documents or chunks)
+- Strings (cleaning text, splitting, normalizing, regex, tokenizing)
+- Dictionaries / hashmaps (lookups by ID, caching, counting, grouping, config maps, metadata)
+- Sets (dedup of chunks/docs/IDs, "seen" tracking, membership checks)
+- Two pointers or sliding window (text chunking with overlap, context windows, token budgets)
+- Stacks (nested parsing, bracket/markdown/JSON handling, undo, call stacks in recursion)
+- Queues (ingestion pipelines, async jobs, rate limiting, BFS)
+- Linked structures (chained chunks, prev/next document links)
+- Recursion (walking nested JSON, folder trees, document trees, nested sections)
+- Trees (document hierarchy, section → subsection, JSON, AST, B-tree/index structures)
+- Graphs (citation links, knowledge graph, dependency graphs, BFS/DFS traversals)
+- Binary search (sorted timestamps, tokenizer offsets, bisect usage, pagination)
+- Sorting (ranking retrieved chunks by score, re-ranking, sorting by date/relevance, top-k)
+- Heaps / priority queues (top-k retrieval, nearest-neighbour candidates, merging ranked lists)
+- Hashing (content hashes for dedup, cache keys, embedding IDs, bloom filters)
+- Nearest-neighbour search / vector similarity (cosine, dot product, ANN index like FAISS/HNSW — explain the algorithm idea in plain words)
+- Dynamic programming or memoization (@lru_cache, memoized calls, edit distance, alignment)
+- Caching / LRU (response caches, embedding caches, eviction policies)
+- Rate limiting / backoff (token buckets, exponential backoff, retry queues)
+- Big-O hot spots (any nested loop over documents or chunks; any O(n²) that could be O(n))
+
+Output the table as: Concept | File:function | One line of what it does in OUR system | Why this structure and not another.
+
+## Step 2 — Teach each one like I am 15
+For EACH row in the table (group duplicates), write a lesson with exactly these parts:
+
+1. **The story** — a real-life picture (phone book, pile of plates, line at a coffee shop) that explains the structure in 2 sentences.
+2. **Where it lives in our code** — paste the relevant 5–20 lines from our repo, then explain them line by line in plain English. Assume I know variables and loops and nothing else.
+3. **Why the original developer chose it** — what would break or be slow if they used a plain list instead? Give the Big-O of what they did vs. the naive way, in "how many times do we touch the data" language.
+4. **Strip it down** — rewrite the same logic as a tiny standalone Python function (no imports from our repo, no framework, max 15 lines, fake sample data) that I can run in a plain Python file. This is the version I will practise typing from memory.
+5. **The interview twin** — write the HackerRank-style question that tests the SAME idea, phrased as a work scenario (logs, transactions, documents, users), with sample input and expected output. Then give the trigger words that tell me "this is a dictionary problem" / "this is a heap problem" etc.
+6. **Say this to the interviewer** — one sentence I can say out loud about time and space complexity.
+
+## Step 3 — Holistic map
+After all lessons, draw ONE end-to-end picture of the RAG pipeline (ingest → chunk → embed → index → retrieve → rerank → generate → cache) and label which data structure/algorithm powers each stage and why. Text/ASCII diagram is fine. This is my "big picture" so I can see how DSA fits together instead of as separate tricks.
+
+## Step 4 — Gap list
+List the DSA topics that do NOT appear in our repo but are common in Python coding interviews (for example: linked lists, binary trees, classic DP). For each, give a 5-line minimal Python example and the same "story + trigger words + interview twin" format, so my preparation has no holes.
+
+## Step 5 — 2-day drill plan
+Order all the "strip it down" functions and "interview twins" by (a) how likely they are in a 1-hour HackerRank round and (b) how much they reuse ideas from our own code. Give me a schedule for today and tomorrow, max 6 items per day, each item: type the stripped-down function from memory → solve the interview twin → say the complexity sentence out loud.
+
+Rules:
+- Use simple English. Short sentences. I am not a native English speaker.
+- Never say "obviously" or "simply".
+- Always show the real file path so I can open it.
+- If a structure appears in a third-party library we call (FAISS, numpy, LangChain, a vector DB client), still explain the algorithm idea in plain words, and mark it "library — we call it, we did not write it".
+- Do not skip Step 3. The holistic map is the most important output.
